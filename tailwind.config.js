@@ -8,8 +8,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        Kblack: "#141519",
+        Keclipse: "#15202B",
+        Kgreen: "#2FFF51",
+        Kblue: "#512FFF",
+        Kred: "#FF512F",
+      },
+      fontFamily: {
+        kfont: ['Poppins', 'serif']
+       
       },
     },
   },
