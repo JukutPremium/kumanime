@@ -1,10 +1,6 @@
 import "./globals.css";
 
-import { Geist } from "next/font/google";
-
-const font = Geist({
-  subsets: ["latin"],
-});
+import { GeistSans } from 'geist/font/sans';
 
 export const metadata: Metadata = {
   title: "Kumanime - Nonton Anime Sub Indo Terlengkap dan Terbaru",
@@ -45,7 +41,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${font.className} antialiased`}>
+    <html lang="en" className={`${GeistSans.className} antialiased`}>
       <body>{children}</body>
     </html>
   );
