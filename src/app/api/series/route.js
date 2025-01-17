@@ -7,8 +7,9 @@ export async function GET(request) {
       return NextResponse.json({ error: "Unauthorized." }, { status: 401 });
     }
 
-    const data = await prisma.series.findMany({
+    const dataSeries = await prisma.series.findMany({
       where: { deleted: false },
+      orderBy: { updatedOn: "desc" }, // Mengurutkan berdasarkan waktu update terbaru
     });
 
     return NextResponse.json(data);
