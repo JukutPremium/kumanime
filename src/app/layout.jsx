@@ -1,8 +1,8 @@
 import "./globals.css";
 
-import { GeistSans } from 'geist/font/sans';
+import { GeistSans } from "geist/font/sans";
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Kumanime - Nonton Anime Sub Indo Terlengkap dan Terbaru",
   description:
     "Kumanime adalah platform terbaik untuk nonton anime sub Indo terbaru dan terlengkap dengan kualitas HD. Temukan anime favoritmu dari berbagai genre seperti action, romance, fantasy, dan masih banyak lagi. Streaming gratis, kapan saja dan di mana saja!",
