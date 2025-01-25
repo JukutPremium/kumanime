@@ -23,7 +23,7 @@ export default function Home() {
             <div className='p-24'>
               <div className='border-l-4 border-[#05C149]'>
                 <h1 className="text-white text-6xl font-bold pl-1">DAN DAN DAN DAN</h1>
-                <p className="text-white pl-2 text-lg">Momo's childhood friend and first love, Jiji (Enjoji Jin), comes to Seiko for help because he is disturbed by strange events in his new house. Okarun, who just found out that Jiji is Momo&apos;s first love, can&apos;t hide her anxiety and tries to get away from Momo. At that moment, a human body model appears and runs with all her might in front of Okarun.</p>
+                <p className="text-white pl-2 text-lg">Momo&apos;s childhood friend and first love, Jiji (Enjoji Jin), comes to Seiko for help because he is disturbed by strange events in his new house. Okarun, who just found out that Jiji is Momo&apos;s first love, can&apos;t hide her anxiety and tries to get away from Momo. At that moment, a human body model appears and runs with all her might in front of Okarun.</p>
               </div>
               <div className='pt-8 flex gap-4'>
                 <button className="bg-[#05C149] px-10 py-3 rounded-full flex items-center space-x-2">
