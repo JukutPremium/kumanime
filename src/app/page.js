@@ -19,7 +19,7 @@ export default function Home() {
 
       <section className="relative h-[calc(100vh-80px)] w-full">
         <div className="absolute inset-0 bg-[url(../../public/banner.jpg)] bg-no-repeat bg-cover brightness-50" />
-        <div className="relative z-10 h-full w-full flex items-end justify-center">
+        <div className="relative z-10 h-full w-[900px] flex items-end justify-center">
           <div className='p-4 sm:p-12 md:p-24 w-full'>
             <div className='border-l-4 border-[#2FFF51] py-2'>
               <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold pl-3 sm:pl-5">DAN DAN DAN DAN</h1>
