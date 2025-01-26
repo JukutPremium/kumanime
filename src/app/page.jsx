@@ -1,6 +1,7 @@
 // pages/index.js
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import HeroSlider from './components/Slider';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -17,7 +18,7 @@ export default function Home() {
         </p>
       </div> */}
 
-      <section className="relative h-[calc(100vh-80px)] w-full">
+      {/* <section className="relative h-[calc(100vh-80px)] w-full">
         <div className="absolute inset-0 bg-[url(../../public/banner.jpg)] bg-no-repeat bg-cover brightness-50" />
         <div className="relative z-10 h-full w-full md:w-[900px] flex items-end justify-center">
           <div className='p-4 sm:p-12 md:p-24 w-full'>
@@ -43,7 +44,9 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
+
+      <HeroSlider />
 
       {/* New Update */}
       <section className='h-full w-full'>

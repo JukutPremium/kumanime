@@ -22,7 +22,7 @@ const Navbar = () => {
             <li><Link href="#">Ongoing</Link></li>
             <li><Link href="#">Schedule</Link></li>
             <li className='h-5 w-5'>
-              <button><AiOutlineSearch className='size-5' /></button>
+              <button><Link href='jkt-components/search'><AiOutlineSearch className='size-5' /></Link></button>
             </li>
           </ul>
         </div>
@@ -43,7 +43,7 @@ const Navbar = () => {
           <li><Link href="#">Ongoing</Link></li>
           <li><Link href="#">Schedule</Link></li>
           <li>
-            <button>Search</button>
+            <button><Link href='jkt-components/search'></Link>Search</button>
           </li>
         </ul>
       </div>
