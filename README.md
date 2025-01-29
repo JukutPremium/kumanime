@@ -7,7 +7,7 @@
 ## Setup .env
 ```env
  # Random String
-AUTH_SECRET=""
+AUTH_SECRET="" # Added by `npx auth`. Read more: https://cli.authjs.dev
 
 # Google Id
 AUTH_GOOGLE_ID="" 
