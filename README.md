@@ -1,8 +1,13 @@
-# Kumanime Webstite Next.js
+# Kumanime Webstite Next.js Version
+Kumanime adalah platform streaming anime sub Indo terbaik yang menyediakan koleksi anime terbaru dan terlengkap dengan kualitas HD. Kami menghadirkan pengalaman menonton yang nyaman, cepat, dan bebas gangguan, sehingga kamu bisa menikmati anime favoritmu kapan saja dan di mana saja.
+Di Kumanime, kamu bisa menemukan berbagai genre anime, mulai dari action, romance, fantasy, isekai, hingga slice of life. Kami selalu memperbarui daftar anime secara rutin, memastikan kamu tidak ketinggalan episode terbaru dari serial favoritmu.
+Dengan antarmuka yang user-friendly dan navigasi yang mudah, Kumanime menjadi pilihan tepat bagi para penggemar anime yang menginginkan pengalaman streaming yang praktis dan menyenangkan. Bergabunglah dengan ribuan pengguna lainnya dan nikmati kemudahan menonton anime hanya di Kumanime!
+
 
 ## Website
 - http://localhost:3000
 - https://kumanimeweb.vercel.app
+- https://.kumanime.xyz
 
 ## Setup .env
 ```env
