@@ -33,17 +33,14 @@ export const metadata = {
     title: "Kumanime - Nonton Anime Sub Indo Terlengkap & Terbaru",
     description:
       "Kumanime adalah platform terbaik untuk nonton anime sub Indo terbaru dan terlengkap dengan kualitas HD. Temukan anime favoritmu dari berbagai genre seperti action, romance, fantasy, dan masih banyak lagi. Streaming gratis, kapan saja dan di mana saja!",
-    siteId: "1234567890", // Ganti dengan ID Twitter yang sesuai
-    creator: "@KumanimeOfficial", // Ganti dengan handle Twitter Kumanime jika ada
-    creatorId: "1234567890", // Ganti dengan ID Twitter yang sesuai
     images: ["https://kumanimeweb.vercel.app/banner.jpg"], // Ganti dengan URL gambar yang sesuai
   },
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${GeistSans.className} antialiased`}>
-      <body>{children}</body>
+    <html lang="en">
+      <body className={`${GeistSans.className} antialiased`}>{children}</body>
     </html>
   );
 }

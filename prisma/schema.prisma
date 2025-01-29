@@ -7,7 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Serise {
+model Series {
   id           Int        @id @default(autoincrement())
   title        String
   banner       String
@@ -36,8 +36,8 @@ model Episode {
   deleted      Boolean
   updatedOn   DateTime       @updatedAt
   videoServer VideoServer[]
-  seriseId    Int
-  serise      Serise         @relation(fields: [seriseId], references: [id], onDelete: Cascade)
+  seriesId    Int
+  series      Series         @relation(fields: [seriesId], references: [id], onDelete: Cascade)
 }
 
 model VideoServer {
