@@ -1,5 +1,4 @@
 import NextAuth from "next-auth";
-import { NextRequest } from "next/server";
 import Google from "next-auth/providers/google";
 
 export function authenticate(request) {
@@ -14,4 +13,14 @@ export function authenticate(request) {
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [Google],
+  session: {
+    strategy: "cookie", // Gunakan session berbasis cookie
+  },
+  callbacks: {
+    async session(session, user) {
+      // Menambahkan user.id ke session jika perlu
+      session.user.id = user.id;
+      return session;
+    },
+  },
 });
