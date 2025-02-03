@@ -11,7 +11,7 @@ export async function DELETE(request, { params }) {
     }
 
     // Get slug from URL params
-    const { slug } = params;
+    const { slug } = await params;
 
     if (!slug) {
       return NextResponse.json(
@@ -60,7 +60,7 @@ export async function GET(request, { params }) {
     }
 
     // Get slug from URL params
-    const { slug } = params;
+    const { slug } = await params;
 
     if (!slug) {
       return NextResponse.json(
