@@ -72,6 +72,12 @@ export async function GET(request, { params }) {
     // Retrieve specific data series by slug, ensuring it's not deleted
     const dataSeries = await prisma.series.findUnique({
       where: { slug, deleted: false },
+      include: {
+        episodes: {
+          where: { deleted: false }, // Only include non-deleted episodes
+          orderBy: { order: "asc" }, // Optional: Order episodes by 'order'
+        },
+      },
     });
 
     // If no data is found
