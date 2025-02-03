@@ -2,7 +2,7 @@ import { prisma } from "@/prisma";
 import { authenticate } from "@/auth";
 import { NextResponse } from "next/server";
 
-export async function GET(request) {
+export async function DELETE(request) {
   try {
     if (!authenticate(request)) {
       return NextResponse.json({ error: "Unauthorized." }, { status: 401 });
