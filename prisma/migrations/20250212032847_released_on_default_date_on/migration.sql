@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Series" ALTER COLUMN "releasedOn" SET DEFAULT CURRENT_TIMESTAMP;

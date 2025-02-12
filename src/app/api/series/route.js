@@ -46,7 +46,92 @@ export async function POST(request) {
       );
     }
 
-    // Create new series entry
+    // Validasi title
+    if (
+      !dataBody.title ||
+      typeof dataBody.title !== "string" ||
+      dataBody.title.length < 3
+    ) {
+      return NextResponse.json({ error: "Invalid title." }, { status: 400 });
+    }
+
+    // Validasi banner (harus string dan bukan kosong)
+    if (!dataBody.banner || typeof dataBody.banner !== "string") {
+      return NextResponse.json(
+        { error: "Invalid banner URL." },
+        { status: 400 },
+      );
+    }
+
+    // Validasi slug (minimal 3 karakter dan string)
+    if (
+      !dataBody.slug ||
+      typeof dataBody.slug !== "string" ||
+      dataBody.slug.length < 3
+    ) {
+      return NextResponse.json({ error: "Invalid slug." }, { status: 400 });
+    }
+
+    // Validasi synopsis (minimal 10 karakter)
+    if (
+      !dataBody.synopsis ||
+      typeof dataBody.synopsis !== "string" ||
+      dataBody.synopsis.length < 10
+    ) {
+      return NextResponse.json({ error: "Invalid synopsis." }, { status: 400 });
+    }
+
+    if (!dataBody.status || typeof dataBody.status !== "string") {
+      return NextResponse.json({ error: "Invalid status." }, { status: 400 });
+    }
+
+    // Validasi studio (minimal 2 karakter)
+    if (
+      !dataBody.studio ||
+      typeof dataBody.studio !== "string" ||
+      dataBody.studio.length < 2
+    ) {
+      return NextResponse.json({ error: "Invalid studio." }, { status: 400 });
+    }
+
+    // Validasi season (harus string)
+    if (!dataBody.season || typeof dataBody.season !== "string") {
+      return NextResponse.json({ error: "Invalid season." }, { status: 400 });
+    }
+
+    // Validasi type (harus string)
+    if (!dataBody.type || typeof dataBody.type !== "string") {
+      return NextResponse.json({ error: "Invalid type." }, { status: 400 });
+    }
+
+    // Validasi preview (bisa kosong atau string)
+    if (dataBody.preview && typeof dataBody.preview !== "string") {
+      return NextResponse.json({ error: "Invalid preview." }, { status: 400 });
+    }
+
+    // Validasi genre (harus array dan semua elemennya string)
+    if (typeof dataBody.genre === "string") {
+      dataBody.genre = dataBody.genre.split(",").map((g) => g.trim());
+    }
+
+    if (
+      !Array.isArray(dataBody.genre) ||
+      dataBody.genre.some((g) => typeof g !== "string")
+    ) {
+      return NextResponse.json(
+        { error: "Invalid genre format." },
+        { status: 400 },
+      );
+    }
+
+    // Validasi censor (harus boolean)
+    if (typeof dataBody.censor !== "boolean") {
+      return NextResponse.json(
+        { error: "Invalid censor value." },
+        { status: 400 },
+      );
+    }
+
     const newSeries = await prisma.series.create({
       data: {
         title: dataBody.title,
@@ -54,14 +139,12 @@ export async function POST(request) {
         slug: dataBody.slug,
         synopsis: dataBody.synopsis,
         status: dataBody.status,
-        releadted: dataBody.releadted,
-        rating: dataBody.rating,
         studio: dataBody.studio,
         season: dataBody.season,
-        preview: dataBody.preview,
-        postedBy: dataBody.postedBy,
         type: dataBody.type,
-        genre: dataBody.genre,
+        preview: dataBody.preview || null, // Jika `preview` bisa kosong
+        genre: dataBody.genre, // Pastikan ini selalu array
+        censor: dataBody.censor ?? false, // Default false jika tidak dikirim
       },
     });
 

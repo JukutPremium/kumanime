@@ -20,7 +20,7 @@ model Series {
   preview      String?
   genre        String[]
 
-  releasedOn   DateTime
+  releasedOn   DateTime   @default(now())
   updatedOn    DateTime   @updatedAt
 
   censor       Boolean    @default(false)
