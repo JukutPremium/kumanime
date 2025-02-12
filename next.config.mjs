@@ -13,6 +13,7 @@ const nextConfig = {
     ],
     unoptimized: true, // Nonaktifkan optimisasi gambar
   },
+  productionBrowserSourceMaps: false, // Matikan source maps di browser
 };
 
 export default nextConfig;

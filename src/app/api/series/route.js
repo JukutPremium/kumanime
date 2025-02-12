@@ -12,6 +12,9 @@ export async function GET(request) {
     const { searchParams } = new URL(request.url);
     const statusFilter = searchParams.get("status");
     const pageType = searchParams.get("page");
+    const page = parseInt(searchParams.get("page")) || 1;
+    const limit = parseInt(searchParams.get("limit")) || 10;
+    const skip = (page - 1) * limit;
 
     let whereClause = { deleted: false };
     if (statusFilter === "completed") {
@@ -20,9 +23,12 @@ export async function GET(request) {
       whereClause.status = "ongoing";
     }
 
+    const totalSeries = await prisma.series.count({ where: whereClause });
     const dataSeries = await prisma.series.findMany({
       where: whereClause,
       orderBy: { updatedOn: "desc" },
+      skip,
+      take: limit,
     });
 
     if (pageType === "anime-list") {
@@ -46,6 +52,7 @@ export async function GET(request) {
       return NextResponse.json({
         data: result,
         status: "Data series successfully retrieved",
+        total: totalSeries,
       });
     }
 
@@ -61,11 +68,13 @@ export async function GET(request) {
       ];
       const groupedByDay = {};
 
-      dataSeries.forEach((series) => {
-        const day = series.scheduleDay || "Unknown";
-        if (!groupedByDay[day]) groupedByDay[day] = [];
-        groupedByDay[day].push(series);
-      });
+      dataSeries
+        .filter((series) => series.status === "ongoing")
+        .forEach((series) => {
+          const day = series.scheduleDay || "Unknown";
+          if (!groupedByDay[day]) groupedByDay[day] = [];
+          groupedByDay[day].push(series);
+        });
 
       const result = daysOfWeek.map((day) => ({
         day,
@@ -75,17 +84,22 @@ export async function GET(request) {
       return NextResponse.json({
         data: result,
         status: "Data series successfully retrieved",
+        total: totalSeries,
       });
     }
 
     return NextResponse.json({
       data: dataSeries,
       status: "Data series successfully retrieved",
+      total: totalSeries,
+      page,
+      limit,
     });
   } catch {
     return NextResponse.json({ error: "Server error." }, { status: 500 });
   }
 }
+
 // Handle POST request (Create a new series)
 export async function POST(request) {
   try {
