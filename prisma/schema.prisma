@@ -15,7 +15,7 @@ model Series {
   synopsis     String
   status       String
   releadted    String?
-  censor       Boolean
+  censor       Boolean    @default(false)
   rating       Float
   releasedOn   DateTime
   studio       String
@@ -24,7 +24,7 @@ model Series {
   postedBy     String
   updatedOn    DateTime   @updatedAt
   type         String
-  deleted      Boolean
+  deleted      Boolean    @default(false)
   genre        String[]
   episodes     Episode[]
 }
