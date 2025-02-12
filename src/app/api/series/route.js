@@ -13,7 +13,7 @@ export async function GET(request) {
     const statusFilter = searchParams.get("status");
 
     const whereClause = { deleted: false };
-    if (statusFilter === "completed") {
+    if (statusFilter === "completed" || statusFilter === "ongoing") {
       whereClause.status = statusFilter;
     }
 
