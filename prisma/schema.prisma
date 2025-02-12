@@ -35,14 +35,7 @@ model Episode {
   releasedOn  DateTime
   deleted      Boolean
   updatedOn   DateTime       @updatedAt
-  videoServer VideoServer[]
+  videoServer String[]
   seriesId    Int
   series      Series         @relation(fields: [seriesId], references: [id], onDelete: Cascade)
-}
-
-model VideoServer {
-  id        Int     @id @default(autoincrement())
-  link      String
-  episodeId Int
-  episode   Episode @relation(fields: [episodeId], references: [id], onDelete: Cascade)
 }
