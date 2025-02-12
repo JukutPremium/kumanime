@@ -33,21 +33,47 @@ export async function POST(request) {
     const dataBody = await request.json();
 
     // Check for duplicate slug
-    if (await prisma.series.findUnique({ where: { slug: dataBody.slug } })) {
-      return NextResponse.json({ error: "Slug already in use" }, { status: 409 });
+    if (
+      await prisma.series.findUnique({
+        where: { slug: dataBody.slug, deleted: false },
+      })
+    ) {
+      return NextResponse.json(
+        { error: "Slug already in use" },
+        { status: 409 },
+      );
     }
 
     // Validate required fields
-    const requiredFields = ["title", "banner", "slug", "synopsis", "status", "studio", "season", "type"];
+    const requiredFields = [
+      "title",
+      "banner",
+      "slug",
+      "synopsis",
+      "status",
+      "studio",
+      "season",
+      "type",
+    ];
     for (const field of requiredFields) {
-      if (!dataBody[field] || typeof dataBody[field] !== "string" || dataBody[field].trim() === "") {
-        return NextResponse.json({ error: `Invalid ${field}.` }, { status: 400 });
+      if (
+        !dataBody[field] ||
+        typeof dataBody[field] !== "string" ||
+        dataBody[field].trim() === ""
+      ) {
+        return NextResponse.json(
+          { error: `Invalid ${field}.` },
+          { status: 400 },
+        );
       }
     }
 
     // Validate synopsis length
     if (dataBody.synopsis.length < 10) {
-      return NextResponse.json({ error: "Synopsis must be at least 10 characters." }, { status: 400 });
+      return NextResponse.json(
+        { error: "Synopsis must be at least 10 characters." },
+        { status: 400 },
+      );
     }
 
     // Validate genre (Convert from string if needed)
@@ -55,8 +81,14 @@ export async function POST(request) {
       dataBody.genre = dataBody.genre.split(",").map((g) => g.trim());
     }
 
-    if (!Array.isArray(dataBody.genre) || dataBody.genre.some((g) => typeof g !== "string")) {
-      return NextResponse.json({ error: "Invalid genre format." }, { status: 400 });
+    if (
+      !Array.isArray(dataBody.genre) ||
+      dataBody.genre.some((g) => typeof g !== "string")
+    ) {
+      return NextResponse.json(
+        { error: "Invalid genre format." },
+        { status: 400 },
+      );
     }
 
     // Validate optional fields
