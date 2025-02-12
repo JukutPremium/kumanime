@@ -13,6 +13,10 @@ const nextConfig = {
     ],
     unoptimized: true, // Nonaktifkan optimisasi gambar
   },
+  experimental: {
+    enableUndici: true, // Coba aktifkan jika ada masalah fetching
+  },
+  productionBrowserSourceMaps: false, // Matikan source maps di browser
 };
 
 export default nextConfig;
