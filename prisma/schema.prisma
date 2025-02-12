@@ -9,23 +9,23 @@ datasource db {
 
 model Series {
   id           Int        @id @default(autoincrement())
+  slug         String     @unique
   title        String
   banner       String
-  slug         String     @unique
   synopsis     String
-  status       String[]
-  releadted    String?
-  censor       Boolean
-  rating       Float
-  releasedOn   DateTime
+  status       String
   studio       String
   season       String
-  preview      String?
-  postedBy     String
-  updatedOn    DateTime   @updatedAt
   type         String
-  deleted      Boolean
+  preview      String?
   genre        String[]
+
+  releasedOn   DateTime   @default(now())
+  updatedOn    DateTime   @updatedAt
+
+  censor       Boolean    @default(false)
+  deleted      Boolean    @default(false)
+
   episodes     Episode[]
 }
 
