@@ -9,8 +9,16 @@ export async function GET(request) {
       return NextResponse.json({ error: "Unauthorized." }, { status: 401 });
     }
 
+    const { searchParams } = new URL(request.url);
+    const statusFilter = searchParams.get("status");
+
+    const whereClause = { deleted: false };
+    if (statusFilter === "completed") {
+      whereClause.status = statusFilter;
+    }
+
     const dataSeries = await prisma.series.findMany({
-      where: { deleted: false },
+      where: whereClause,
       orderBy: { updatedOn: "desc" },
     });
 
@@ -22,7 +30,6 @@ export async function GET(request) {
     return NextResponse.json({ error: "Server error." }, { status: 500 });
   }
 }
-
 // Handle POST request (Create a new series)
 export async function POST(request) {
   try {
