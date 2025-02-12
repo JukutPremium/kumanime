@@ -97,7 +97,8 @@ export async function GET(request, { params }) {
 }
 
 // PATCH route: Update a series by slug
-export async function PATCH(request, { params }) {
+export async function PATCH(request, props) {
+  const params = await props.params;
   try {
     // Check Authorization
     if (!authenticate(request)) {

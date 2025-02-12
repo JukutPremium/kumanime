@@ -14,7 +14,8 @@ async function getSeries(page, limit) {
   return res.json();
 }
 
-export default async function Page({ params }) {
+export default async function Page(props) {
+  const params = await props.params;
   const page = parseInt(params.page) || 1;
   const limit = 1; // Bisa diubah sesuai kebutuhan
 
