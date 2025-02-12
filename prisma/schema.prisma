@@ -18,6 +18,7 @@ model Series {
   season       String
   type         String
   preview      String?
+  scheduleDay  String?
   genre        String[]
 
   releasedOn   DateTime   @default(now())
