@@ -22,7 +22,7 @@ export async function DELETE(request, { params }) {
 
     // Check if the data exists before trying to update
     const existingData = await prisma.series.findUnique({
-      where: { slug , deleted: false},
+      where: { slug, deleted: false },
     });
 
     // If data doesn't exist or already deleted
@@ -96,3 +96,89 @@ export async function GET(request, { params }) {
   }
 }
 
+// PATCH route: Update a series by slug
+export async function PATCH(request, { params }) {
+  try {
+    // Check Authorization
+    if (!authenticate(request)) {
+      return NextResponse.json({ error: "Unauthorized." }, { status: 401 });
+    }
+
+    // Get slug from URL params
+    const { slug } = params;
+    if (!slug) {
+      return NextResponse.json(
+        { error: "Slug not provided." },
+        { status: 400 },
+      );
+    }
+
+    // Check if the series exists and is not deleted
+    const existingSeries = await prisma.series.findUnique({
+      where: { slug, deleted: false },
+    });
+    if (!existingSeries) {
+      return NextResponse.json({ error: "Data not found." }, { status: 404 });
+    }
+
+    // Parse request body
+    const dataBody = await request.json();
+    const updatableFields = [
+      "title",
+      "banner",
+      "synopsis",
+      "status",
+      "studio",
+      "season",
+      "type",
+      "preview",
+      "genre",
+      "censor",
+    ];
+
+    const updateData = {};
+    for (const field of updatableFields) {
+      if (dataBody[field] !== undefined) {
+        updateData[field] = dataBody[field];
+      }
+    }
+
+    // Validate genre (Convert from string if needed)
+    if (updateData.genre) {
+      if (typeof updateData.genre === "string") {
+        updateData.genre = updateData.genre.split(",").map((g) => g.trim());
+      }
+      if (
+        !Array.isArray(updateData.genre) ||
+        updateData.genre.some((g) => typeof g !== "string")
+      ) {
+        return NextResponse.json(
+          { error: "Invalid genre format." },
+          { status: 400 },
+        );
+      }
+    }
+
+    // Validate synopsis length if updated
+    if (updateData.synopsis && updateData.synopsis.length < 10) {
+      return NextResponse.json(
+        { error: "Synopsis must be at least 10 characters." },
+        { status: 400 },
+      );
+    }
+
+    // Update the series data
+    const updatedSeries = await prisma.series.update({
+      where: { slug },
+      data: updateData,
+    });
+
+    return NextResponse.json({
+      data: updatedSeries,
+      status: "Series successfully updated.",
+    });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({ error: "Server error." }, { status: 500 });
+  }
+}
