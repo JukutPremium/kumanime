@@ -22,7 +22,7 @@ export async function DELETE(request, { params }) {
 
     // Check if the data exists before trying to update
     const existingData = await prisma.series.findUnique({
-      where: { slug },
+      where: { slug , deleted: false},
     });
 
     // If data doesn't exist or already deleted
