@@ -11,11 +11,13 @@ export async function GET(request) {
 
     const { searchParams } = new URL(request.url);
     const statusFilter = searchParams.get("status");
-    const pageFilter = searchParams.get("page");
+    const pageType = searchParams.get("page");
 
-    const whereClause = { deleted: false };
-    if (statusFilter === "completed" || statusFilter === "ongoing") {
-      whereClause.status = statusFilter;
+    let whereClause = { deleted: false };
+    if (statusFilter === "completed") {
+      whereClause.status = "completed";
+    } else if (statusFilter === "ongoing") {
+      whereClause.status = "ongoing";
     }
 
     const dataSeries = await prisma.series.findMany({
@@ -23,33 +25,55 @@ export async function GET(request) {
       orderBy: { updatedOn: "desc" },
     });
 
-    if (pageFilter === "anime-list") {
-      const categorizedData = {};
+    if (pageType === "anime-list") {
+      const groupedData = {};
+      dataSeries.forEach((series) => {
+        const firstChar = series.title.charAt(0).toLowerCase();
+        const key = /[a-z]/.test(firstChar) ? firstChar : "0-9 or #";
+        if (!groupedData[key]) groupedData[key] = [];
+        groupedData[key].push(series);
+      });
 
-      for (const series of dataSeries) {
-        const firstChar = series.title[0].toLowerCase();
-        let category = firstChar;
-
-        if (!/[a-z]/.test(firstChar)) {
-          category = "0-9 or #";
-        }
-
-        if (!categorizedData[category]) {
-          categorizedData[category] = [];
-        }
-
-        categorizedData[category].push(series);
-      }
-
-      const formattedData = Object.keys(categorizedData)
-        .sort()
-        .map((key) => ({
-          name: key,
-          data: categorizedData[key],
-        }));
+      const sortedKeys = [
+        "0-9 or #",
+        ...Array.from({ length: 26 }, (_, i) => String.fromCharCode(97 + i)),
+      ];
+      const result = sortedKeys.map((key) => ({
+        name: key,
+        data: groupedData[key] || [],
+      }));
 
       return NextResponse.json({
-        data: formattedData,
+        data: result,
+        status: "Data series successfully retrieved",
+      });
+    }
+
+    if (pageType === "schedule-list") {
+      const daysOfWeek = [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+      ];
+      const groupedByDay = {};
+
+      dataSeries.forEach((series) => {
+        const day = series.scheduleDay || "Unknown";
+        if (!groupedByDay[day]) groupedByDay[day] = [];
+        groupedByDay[day].push(series);
+      });
+
+      const result = daysOfWeek.map((day) => ({
+        day,
+        data: groupedByDay[day] || [],
+      }));
+
+      return NextResponse.json({
+        data: result,
         status: "Data series successfully retrieved",
       });
     }
@@ -62,7 +86,6 @@ export async function GET(request) {
     return NextResponse.json({ error: "Server error." }, { status: 500 });
   }
 }
-
 // Handle POST request (Create a new series)
 export async function POST(request) {
   try {
