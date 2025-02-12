@@ -11,6 +11,7 @@ export async function GET(request) {
 
     const { searchParams } = new URL(request.url);
     const statusFilter = searchParams.get("status");
+    const pageFilter = searchParams.get("page");
 
     const whereClause = { deleted: false };
     if (statusFilter === "completed" || statusFilter === "ongoing") {
@@ -22,6 +23,37 @@ export async function GET(request) {
       orderBy: { updatedOn: "desc" },
     });
 
+    if (pageFilter === "anime-list") {
+      const categorizedData = {};
+
+      for (const series of dataSeries) {
+        const firstChar = series.title[0].toLowerCase();
+        let category = firstChar;
+
+        if (!/[a-z]/.test(firstChar)) {
+          category = "0-9 or #";
+        }
+
+        if (!categorizedData[category]) {
+          categorizedData[category] = [];
+        }
+
+        categorizedData[category].push(series);
+      }
+
+      const formattedData = Object.keys(categorizedData)
+        .sort()
+        .map((key) => ({
+          name: key,
+          data: categorizedData[key],
+        }));
+
+      return NextResponse.json({
+        data: formattedData,
+        status: "Data series successfully retrieved",
+      });
+    }
+
     return NextResponse.json({
       data: dataSeries,
       status: "Data series successfully retrieved",
@@ -30,6 +62,7 @@ export async function GET(request) {
     return NextResponse.json({ error: "Server error." }, { status: 500 });
   }
 }
+
 // Handle POST request (Create a new series)
 export async function POST(request) {
   try {
