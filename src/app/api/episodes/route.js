@@ -1,6 +1,7 @@
 import { prisma } from "@/prisma";
 import { authenticate } from "@/auth";
 import { NextResponse } from "next/server";
+import { nanoid } from "nanoid"; // Generate unique slug
 
 // Handle POST request (Create a new episode)
 export async function POST(request) {
@@ -30,13 +31,30 @@ export async function POST(request) {
       return NextResponse.json({ error: "Series not found." }, { status: 404 });
     }
 
-    // Validate order (must be positive integer)
+    // Validate order (must be positive integer and unique per seriesId)
     if (!Number.isInteger(dataBody.order) || dataBody.order <= 0) {
       return NextResponse.json(
         { error: "Order must be a positive integer." },
         { status: 400 },
       );
     }
+
+    const existingEpisode = await prisma.episode.findFirst({
+      where: {
+        order: dataBody.order,
+        seriesId: dataBody.seriesId,
+        deleted: false,
+      },
+    });
+    if (existingEpisode) {
+      return NextResponse.json(
+        { error: "Order already exists for this series." },
+        { status: 409 },
+      );
+    }
+
+    // Generate unique slug
+    const episodeSlug = `${series.slug}-ep-${dataBody.order}-${nanoid(6)}`;
 
     // Validate videoServer (Convert from string if needed)
     if (typeof dataBody.videoServer === "string") {
@@ -57,6 +75,7 @@ export async function POST(request) {
     // Create new episode entry
     const newEpisode = await prisma.episode.create({
       data: {
+        slug: episodeSlug,
         order: dataBody.order,
         videoServer: dataBody.videoServer,
         seriesId: dataBody.seriesId,
