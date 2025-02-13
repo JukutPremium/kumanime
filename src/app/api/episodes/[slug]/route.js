@@ -50,10 +50,6 @@ export async function DELETE(request, { params }) {
   }
 }
 
-import { prisma } from "@/prisma";
-import { authenticate } from "@/auth";
-import { NextResponse } from "next/server";
-
 // GET route: Retrieve specific episode by slug
 export async function GET(request, { params }) {
   try {
@@ -63,7 +59,7 @@ export async function GET(request, { params }) {
     }
 
     // Get slug from URL params
-    const { slug } = params;
+    const { slug } = await params;
 
     if (!slug) {
       return NextResponse.json(
