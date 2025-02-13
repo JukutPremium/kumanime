@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Episode" ALTER COLUMN "releasedOn" SET DEFAULT CURRENT_TIMESTAMP,
+ALTER COLUMN "deleted" SET DEFAULT false;

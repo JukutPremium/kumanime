@@ -31,12 +31,15 @@ model Series {
 }
 
 model Episode {
-  id          Int           @id @default(autoincrement())
+  id          Int          @id @default(autoincrement())
   order       Int           
-  releasedOn  DateTime
-  deleted      Boolean
-  updatedOn   DateTime       @updatedAt
   videoServer String[]
+
+  releasedOn  DateTime     @default(now())
+  updatedOn   DateTime     @updatedAt
+
+  deleted     Boolean      @default(false)
+
   seriesId    Int
-  series      Series         @relation(fields: [seriesId], references: [id], onDelete: Cascade)
+  series      Series       @relation(fields: [seriesId], references: [id], onDelete: Cascade)
 }
