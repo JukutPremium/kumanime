@@ -32,7 +32,8 @@ model Series {
 
 model Episode {
   id          Int          @id @default(autoincrement())
-  order       Int           
+  slug        String       @unique
+  order       Int          @unique  
   videoServer String[]
 
   releasedOn  DateTime     @default(now())
