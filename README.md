@@ -7,7 +7,7 @@ Dengan antarmuka yang user-friendly dan navigasi yang mudah, Kumanime menjadi pi
 ## Website
 - http://localhost:3000
 - https://kumanimeweb.vercel.app
-- https://.kumanime.xyz
+- https://kumanime.xyz
 
 ## Setup .env
 ```env
@@ -32,3 +32,7 @@ ALLOWED_EMAILS="" # osiic.offcl@gmail.com,jukutpremium@gmail.com
 # Fill in when entering production with production
 NODE_ENV="" # production | dev
 ```
+
+## Image
+![image](https://github.com/user-attachments/assets/4eeb1124-5583-4b14-8d5c-6c0c57f0cb64)
+
