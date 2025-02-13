@@ -12,6 +12,7 @@ export async function GET(request) {
     const { searchParams } = new URL(request.url);
     const statusFilter = searchParams.get("status");
     const pageType = searchParams.get("page");
+    const searchQuery = searchParams.get("search")?.trim().toLowerCase();
     const page = parseInt(searchParams.get("page")) || 1;
     const limit = parseInt(searchParams.get("limit")) || 10;
     const skip = (page - 1) * limit;
@@ -21,6 +22,10 @@ export async function GET(request) {
       whereClause.status = "completed";
     } else if (statusFilter === "ongoing") {
       whereClause.status = "ongoing";
+    }
+
+    if (searchQuery) {
+      whereClause.title = { contains: searchQuery, mode: "insensitive" };
     }
 
     const totalSeries = await prisma.series.count({ where: whereClause });
