@@ -1,6 +1,7 @@
 import { prisma } from "@/prisma";
 import { authenticate } from "@/auth";
 import { NextResponse } from "next/server";
+import { nanoid } from "nanoid"; // Generate unique slug
 
 // DELETE route: Mark an episode as deleted by slug
 export async function DELETE(request, { params }) {
@@ -115,6 +116,84 @@ export async function GET(request, { params }) {
         allEpisodes: episodeList,
       },
       status: "Episode successfully retrieved.",
+    });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({ error: "Server error." }, { status: 500 });
+  }
+}
+
+// PATCH route: Update an episode by slug
+export async function PATCH(request, { params }) {
+  try {
+    if (!authenticate(request)) {
+      return NextResponse.json({ error: "Unauthorized." }, { status: 401 });
+    }
+
+    const { slug } = await params;
+    if (!slug) {
+      return NextResponse.json(
+        { error: "Slug not provided." },
+        { status: 400 },
+      );
+    }
+
+    const dataBody = await request.json();
+    const existingEpisode = await prisma.episode.findUnique({
+      where: { slug, deleted: false },
+      include: { series: true },
+    });
+    if (!existingEpisode) {
+      return NextResponse.json(
+        { error: "Episode not found." },
+        { status: 404 },
+      );
+    }
+
+    if (
+      dataBody.order &&
+      (!Number.isInteger(dataBody.order) || dataBody.order <= 0)
+    ) {
+      return NextResponse.json(
+        { error: "Order must be a positive integer." },
+        { status: 400 },
+      );
+    }
+
+    if (dataBody.videoServer) {
+      if (typeof dataBody.videoServer === "string") {
+        dataBody.videoServer = dataBody.videoServer
+          .split(",")
+          .map((v) => v.trim());
+      }
+      if (
+        !Array.isArray(dataBody.videoServer) ||
+        dataBody.videoServer.some((v) => typeof v !== "string")
+      ) {
+        return NextResponse.json(
+          { error: "Invalid videoServer format." },
+          { status: 400 },
+        );
+      }
+    }
+
+    let newSlug = existingEpisode.slug;
+    if (dataBody.order && dataBody.order !== existingEpisode.order) {
+      newSlug = `${existingEpisode.series.slug}-ep-${dataBody.order}-${nanoid(6)}`;
+    }
+
+    const updatedEpisode = await prisma.episode.update({
+      where: { slug },
+      data: {
+        slug: newSlug,
+        order: dataBody.order ?? existingEpisode.order,
+        videoServer: dataBody.videoServer ?? existingEpisode.videoServer,
+      },
+    });
+
+    return NextResponse.json({
+      data: updatedEpisode,
+      status: "Episode successfully updated.",
     });
   } catch (error) {
     console.error(error);
