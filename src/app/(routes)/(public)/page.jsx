@@ -1,8 +1,8 @@
 // pages/index.js
 
-import Navbar from "./_components/Navbar";
-import Footer from "./_components/Footer";
-import HeroSlider from "./_components/Slider";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import HeroSlider from "@/components/Slider";
 import Link from "next/link";
 import Image from "next/image";
 
