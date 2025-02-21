@@ -36,7 +36,7 @@ export async function GET(request) {
       take: limit,
     });
 
-    if (pageType === "anime-list") {
+    if (pageType === "animelist") {
       const groupedData = {};
       dataSeries.forEach((series) => {
         const firstChar = series.title.charAt(0).toLowerCase();
@@ -61,7 +61,7 @@ export async function GET(request) {
       });
     }
 
-    if (pageType === "schedule-list") {
+    if (pageType === "schedule") {
       const daysOfWeek = [
         "Monday",
         "Tuesday",
