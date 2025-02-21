@@ -1,6 +1,6 @@
-export default async function getSeriesCompleted(page = 1, limit = 10) {
+export default async function getSeries() {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/series?status=completed&page=${page}&limit=${limit}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/series`,
     {
       cache: "no-store",
       headers: {
