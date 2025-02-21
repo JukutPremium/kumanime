@@ -1,19 +1,5 @@
 import Link from "next/link";
-
-async function getSeries(search, page, limit) {
-  const queryParam = search && search !== "kosong" ? `&search=${search}&` : "";
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/series?page=${page}&limit=${limit + queryParam}`,
-    {
-      cache: "no-store",
-      headers: {
-        Authorization: `Bearer ${process.env.AUTH_SECRET}`,
-      },
-    },
-  );
-  if (!res.ok) throw new Error("Failed to fetch data");
-  return res.json();
-}
+import getSeries from "@/fetch/getSeries";
 
 export default async function Search(req) {
   const searchParams = await req.searchParams;
@@ -43,8 +29,9 @@ export default async function Search(req) {
         {/* Tombol Previous */}
         <Link
           href={`/search?query=${search}&page=${page - 1}`}
-          className={`px-6 py-2 bg-blue-700 text-white rounded-lg shadow-md hover:bg-blue-800 ${page <= 1 ? "pointer-events-none opacity-50" : ""
-            }`}
+          className={`px-6 py-2 bg-blue-700 text-white rounded-lg shadow-md hover:bg-blue-800 ${
+            page <= 1 ? "pointer-events-none opacity-50" : ""
+          }`}
         >
           Previous
         </Link>
@@ -52,8 +39,9 @@ export default async function Search(req) {
         {/* Tombol Next */}
         <Link
           href={`/search?query=${search}&page=${page + 1}`}
-          className={`px-6 py-2 bg-blue-700 text-white rounded-lg shadow-md hover:bg-blue-800 ${page >= totalPages ? "pointer-events-none opacity-50" : ""
-            }`}
+          className={`px-6 py-2 bg-blue-700 text-white rounded-lg shadow-md hover:bg-blue-800 ${
+            page >= totalPages ? "pointer-events-none opacity-50" : ""
+          }`}
         >
           Next
         </Link>
