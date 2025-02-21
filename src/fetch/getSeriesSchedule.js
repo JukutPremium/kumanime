@@ -1,6 +1,6 @@
 export default async function getSeriesSchedule() {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/series?page=schedule-list`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/series?page=schedule`,
     {
       cache: "no-store",
       headers: {
