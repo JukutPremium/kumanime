@@ -13,7 +13,8 @@ const Navbar = () => {
         <h1 className="font-bold text-3xl">
           Kum<span className="text-Kgreen">anime</span>
         </h1>
-        {/* Dekstop */}
+
+        {/* Desktop Navigation */}
         <div className="hidden md:flex">
           <ul className="flex gap-4 font-semi-bold text-md items-center">
             <li>
@@ -31,17 +32,18 @@ const Navbar = () => {
             <li>
               <Link href="/schedule">Schedule</Link>
             </li>
+            <li>
+              <Link href="/completed">Completed</Link>
+            </li>
             <li className="h-5 w-5">
-              <button>
-                <Link href="jkt-components/search">
-                  <AiOutlineSearch className="size-5" />
-                </Link>
-              </button>
+              <Link href="/search">
+                <AiOutlineSearch className="size-5" />
+              </Link>
             </li>
           </ul>
         </div>
 
-        {/* Mobile */}
+        {/* Mobile Navigation Toggle */}
         <div className="md:hidden flex items-center">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -52,30 +54,34 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className={`md:hidden ${isMenuOpen ? "block" : "hidden"} mt-4`}>
-        <ul className="flex flex-col gap-4 font-semi-bold text-md items-center">
-          <li>
-            <Link href="/#">Home</Link>
-          </li>
-          <li>
-            <Link href="/animelist">Anime List</Link>
-          </li>
-          <li>
-            <Link href="/watchlist">Watchlist</Link>
-          </li>
-          <li>
-            <Link href="/ongoing">Ongoing</Link>
-          </li>
-          <li>
-            <Link href="/schedule">Schedule</Link>
-          </li>
-          <li>
-            <button>
-              <Link href="jkt-components/search"></Link>Search
-            </button>
-          </li>
-        </ul>
-      </div>
+      {/* Mobile Navigation Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden mt-4">
+          <ul className="flex flex-col gap-4 font-semi-bold text-md items-center">
+            <li>
+              <Link href="/#">Home</Link>
+            </li>
+            <li>
+              <Link href="/animelist">Anime List</Link>
+            </li>
+            <li>
+              <Link href="/watchlist">Watchlist</Link>
+            </li>
+            <li>
+              <Link href="/ongoing">Ongoing</Link>
+            </li>
+            <li>
+              <Link href="/schedule">Schedule</Link>
+            </li>
+            <li>
+              <Link href="/completed">Completed</Link>
+            </li>
+            <li>
+              <Link href="/search">Search</Link>
+            </li>
+          </ul>
+        </div>
+      )}
     </nav>
   );
 };

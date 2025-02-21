@@ -5,7 +5,7 @@ export default async function Home() {
   const { data } = await getSeries();
 
   // Filter series berdasarkan status
-  const updatedSeries = data.filter((anime) => anime.status === "ongoing");
+  const updatedSeries = data;
   const completedSeries = data.filter((anime) => anime.status === "completed");
 
   return (
