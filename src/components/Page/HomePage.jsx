@@ -7,8 +7,6 @@ import Image from "next/image";
 const HomePage = () => {
   return (
     <>
-      <Navbar />
-
       {/* <section className="relative h-[calc(100vh-80px)] w-full">
         <div className="absolute inset-0 bg-[url(../../public/banner.jpg)] bg-no-repeat bg-cover brightness-50" />
         <div className="relative z-10 h-full w-full md:w-[900px] flex items-end justify-center">
@@ -424,7 +422,6 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-      <Footer />
     </>
   );
 };
