@@ -15,8 +15,8 @@ async function getSeries(search, page, limit) {
   return res.json();
 }
 
-export default async function Search(params) {
-  const searchParams = await params.searchParams;
+export default async function Search(req) {
+  const searchParams = await req.searchParams;
   const search = searchParams.query || "";
   const page = parseInt(searchParams.page) || 1;
   const limit = 10; // Bisa diubah sesuai kebutuhan

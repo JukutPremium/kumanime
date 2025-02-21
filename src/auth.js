@@ -13,8 +13,4 @@ export function authenticate(request) {
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [Google],
-  pages: {
-    signIn: "/sign-in",
-    signOut: "/sign-out",
-  },
 });

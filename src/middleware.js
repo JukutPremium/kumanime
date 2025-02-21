@@ -8,8 +8,8 @@ export default auth((req) => {
   const userEmail = req.auth?.user?.email;
   const { pathname, origin } = req.nextUrl;
 
-  if (!isAuthenticated && pathname === "/dashboard") {
-    // Jika belum login dan mencoba mengakses /dashboard, arahkan ke /sign-in
+  if (!isAuthenticated && pathname.startsWith("/dashboard")) {
+    // Jika belum login dan mencoba mengakses halaman dalam /dashboard, arahkan ke /sign-in
     return NextResponse.redirect(new URL("/sign-in", origin));
   }
 
@@ -23,7 +23,10 @@ export default auth((req) => {
     return NextResponse.redirect(new URL("/sign-in", origin));
   }
 
-  if (pathname === "/dashboard" && (!userEmail || !ALLOWED_EMAILS.includes(userEmail))) {
+  if (
+    pathname.startsWith("/dashboard") &&
+    (!userEmail || !ALLOWED_EMAILS.includes(userEmail))
+  ) {
     // Jika email tidak termasuk dalam daftar yang diizinkan, arahkan ke /sign-out
     return NextResponse.redirect(new URL("/sign-out", origin));
   }
@@ -32,5 +35,5 @@ export default auth((req) => {
 });
 
 export const config = {
-  matcher: ["/dashboard", "/sign-in", "/sign-out"],
+  matcher: ["/dashboard/:path*", "/sign-in", "/sign-out"],
 };
