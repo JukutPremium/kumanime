@@ -1,6 +1,6 @@
-export default async function getSeriesSchedule() {
+export default async function getSeriesAnimeList() {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/series?page=schedule-list`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/series?page=anime-list`,
     {
       cache: "no-store",
       headers: {
