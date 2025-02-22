@@ -25,7 +25,7 @@ export default async function handleCreateSeries(formData) {
   const result = await createSeries(seriesData);
 
   if (result.error) {
-    return redirect(`/dashboard/create?message=${result.error}&status=error`);
+    return redirect(`/dashboard?message=${result.error}&status=error`);
   }
 
   return redirect(

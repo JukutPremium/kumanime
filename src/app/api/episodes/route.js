@@ -39,20 +39,6 @@ export async function POST(request) {
       );
     }
 
-    const existingEpisode = await prisma.episode.findFirst({
-      where: {
-        order: dataBody.order,
-        seriesId: dataBody.seriesId,
-        deleted: false,
-      },
-    });
-    if (existingEpisode) {
-      return NextResponse.json(
-        { error: "Order already exists for this series." },
-        { status: 409 },
-      );
-    }
-
     // Generate unique slug
     const episodeSlug = `${series.slug}-ep-${dataBody.order}-${nanoid(6)}`;
 
