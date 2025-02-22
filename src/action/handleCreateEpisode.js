@@ -17,11 +17,11 @@ export default async function handleCreateEpisode(formData) {
 
   if (result.error) {
     return redirect(
-      `/dashboard/series/${episodeData.seriesSlug}?message=${result.error}&status=error`,
+      `/dashboard/series/create/${episodeData.seriesSlug}?message=${result.error}&status=error`,
     );
   }
 
   return redirect(
-    `/dashboard/series/${episodeData.seriesSlug}?message=Episode created successfully&status=success`,
+    `/dashboard/episode/${result.data.slug}?message=Episode created successfully&status=success`,
   );
 }

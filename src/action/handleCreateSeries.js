@@ -25,10 +25,12 @@ export default async function handleCreateSeries(formData) {
   const result = await createSeries(seriesData);
 
   if (result.error) {
-    return redirect(`/dashboard?message=${result.error}&status=error`);
+    return redirect(
+      `/dashboard/series/create?message=${result.error}&status=error`,
+    );
   }
 
   return redirect(
-    `/dashboard?message=Series created successfully&status=success`,
+    `/dashboard/series/${result.data.slug}?message=Series created successfully&status=success`,
   );
 }

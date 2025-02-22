@@ -141,6 +141,7 @@ export async function PATCH(request, { params }) {
     const dataBody = await request.json();
     const existingEpisode = await prisma.episode.findUnique({
       where: { slug, deleted: false },
+      include: { series: true },
     });
     if (!existingEpisode) {
       return NextResponse.json(

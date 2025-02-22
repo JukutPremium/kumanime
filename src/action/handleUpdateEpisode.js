@@ -17,11 +17,11 @@ export default async function handleUpdateEpisode(formData) {
 
   if (result.error) {
     return redirect(
-      `/dashboard/series/${episodeData.seriesSlug}?message=${result.error}&status=error`,
+      `/dashboard/episode/update/${slug}?message=${result.error}&status=error`,
     );
   }
 
   return redirect(
-    `/dashboard/series/${episodeData.seriesSlug}?message=Episode updated successfully&status=success`,
+    `/dashboard/episode/${result.data.slug}?message=Episode updated successfully&status=success`,
   );
 }

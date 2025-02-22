@@ -5,15 +5,30 @@ import handleUpdateSeries from "@/action/handleUpdateSeries";
 
 export default async function UpdateSeries(req) {
   const params = await req.params;
+  const searchParams = await req.searchParams; // Ambil query params
   const seriesQuery = params.series;
 
   const series = await getSeriesBySlug(seriesQuery);
   if (series.error) return notFound();
   const seriesData = series.data;
 
+  // Ambil message dan status dari query params
+  const message = searchParams?.message || "";
+  const alertStatus = searchParams?.status || "";
+
   return (
     <div className="min-h-screen bg-gray-900 text-white p-6">
       <div className="max-w-2xl mx-auto">
+        {/* Notifikasi Status */}
+        {message && (
+          <div
+            className={`mb-4 px-4 py-2 rounded-lg ${
+              alertStatus === "success" ? "bg-green-600" : "bg-red-600"
+            }`}
+          >
+            {message}
+          </div>
+        )}
         <div className="flex justify-between items-center">
           <h1 className="text-2xl font-bold mb-4">Update Series</h1>
           <Link

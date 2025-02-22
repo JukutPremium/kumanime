@@ -1,6 +1,7 @@
 import { prisma } from "@/prisma";
 import { authenticate } from "@/auth";
 import { NextResponse } from "next/server";
+import { nanoid } from "nanoid"; // Generate unique slug
 
 // DELETE route: Mark a series as deleted by slug
 export async function DELETE(request, { params }) {
@@ -30,10 +31,12 @@ export async function DELETE(request, { params }) {
       return NextResponse.json({ error: "Data not found." }, { status: 404 });
     }
 
+    const deletedSeriesSlug = `${existingData.slug}-deleted-${nanoid(6)}`;
+
     // Perform to delete the series
     const dataDeleted = await prisma.series.update({
       where: { slug },
-      data: { deleted: true },
+      data: { deleted: true, slug: deletedSeriesSlug },
     });
 
     // Return successful deletion response

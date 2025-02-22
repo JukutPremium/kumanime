@@ -25,10 +25,12 @@ export default async function handleUpdateSeries(formData) {
   const result = await updateSeries(slug, seriesData);
 
   if (result.error) {
-    return redirect(`/dashboard?message=${result.error}&status=error`);
+    return redirect(
+      `/dashboard/series/update/${slug}?message=${result.error}&status=error`,
+    );
   }
 
   return redirect(
-    `/dashboard?message=Series updated successfully&status=success`,
+    `/dashboard/series/${result.data.slug}?message=Series updated successfully&status=success`,
   );
 }
