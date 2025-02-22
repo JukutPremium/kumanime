@@ -36,7 +36,7 @@ export async function GET(request) {
       take: limit,
     });
 
-    if (pageType === "anime-list") {
+    if (pageType === "animelist") {
       const groupedData = {};
       dataSeries.forEach((series) => {
         const firstChar = series.title.charAt(0).toLowerCase();
@@ -61,7 +61,7 @@ export async function GET(request) {
       });
     }
 
-    if (pageType === "schedule-list") {
+    if (pageType === "schedule") {
       const daysOfWeek = [
         "Monday",
         "Tuesday",
@@ -114,18 +114,6 @@ export async function POST(request) {
 
     const dataBody = await request.json();
 
-    // Check for duplicate slug
-    if (
-      await prisma.series.findUnique({
-        where: { slug: dataBody.slug, deleted: false },
-      })
-    ) {
-      return NextResponse.json(
-        { error: "Slug already in use" },
-        { status: 409 },
-      );
-    }
-
     // Validate required fields
     const requiredFields = [
       "title",
@@ -136,6 +124,7 @@ export async function POST(request) {
       "studio",
       "season",
       "type",
+      "scheduleDay",
     ];
     for (const field of requiredFields) {
       if (
@@ -148,14 +137,6 @@ export async function POST(request) {
           { status: 400 },
         );
       }
-    }
-
-    // Validate synopsis length
-    if (dataBody.synopsis.length < 10) {
-      return NextResponse.json(
-        { error: "Synopsis must be at least 10 characters." },
-        { status: 400 },
-      );
     }
 
     // Validate genre (Convert from string if needed)
@@ -177,6 +158,18 @@ export async function POST(request) {
     const preview = dataBody.preview || null;
     const censor = dataBody.censor ?? false;
 
+    // Check for duplicate slug
+    if (
+      await prisma.series.findUnique({
+        where: { slug: dataBody.slug, deleted: false },
+      })
+    ) {
+      return NextResponse.json(
+        { error: "Slug already in use" },
+        { status: 409 },
+      );
+    }
+    // Validate synopsis length
     // Create new series entry
     const newSeries = await prisma.series.create({
       data: {
