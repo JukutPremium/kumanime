@@ -139,13 +139,6 @@ export async function POST(request) {
       }
     }
 
-    if (dataBody.synopsis.length < 10) {
-      return NextResponse.json(
-        { error: "Synopsis must be at least 10 characters." },
-        { status: 400 },
-      );
-    }
-
     // Validate genre (Convert from string if needed)
     if (typeof dataBody.genre === "string") {
       dataBody.genre = dataBody.genre.split(",").map((g) => g.trim());

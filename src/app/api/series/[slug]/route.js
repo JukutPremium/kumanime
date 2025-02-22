@@ -160,14 +160,6 @@ export async function PATCH(request, props) {
       }
     }
 
-    // Validate synopsis length if updated
-    if (updateData.synopsis && updateData.synopsis.length < 10) {
-      return NextResponse.json(
-        { error: "Synopsis must be at least 10 characters." },
-        { status: 400 },
-      );
-    }
-
     // Update the series data
     const updatedSeries = await prisma.series.update({
       where: { slug },
