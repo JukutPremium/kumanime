@@ -10,7 +10,6 @@ export default async function handleCreateEpisode(formData) {
       .split(";")
       .map((g) => g.trim()),
     seriesId: 1 * formData.get("seriesId"),
-    seriesId: 1 * formData.get("seriesId"),
     seriesSlug: formData.get("seriesSlug"),
   };
 
