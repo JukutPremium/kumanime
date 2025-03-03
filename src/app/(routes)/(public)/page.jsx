@@ -3,7 +3,13 @@ import Link from "next/link";
 import Image from "next/image"; // Import Image from next/image
 
 export default async function Home() {
-  const { data } = await getSeries();
+  const seriesData = await getSeries();
+
+  if (!seriesData || seriesData.error) {
+    return notFound();
+  }
+
+  const data = seriesData.data;
 
   // Filter series berdasarkan status
   const updatedSeries = data;
