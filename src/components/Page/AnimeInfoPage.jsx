@@ -1,4 +1,4 @@
-
+import Image from "next/image";
 
 export default function AnimeInfoPage () {
     const anime = {
@@ -39,7 +39,7 @@ export default function AnimeInfoPage () {
           {/* Anime Poster */}
           <div className="w-full md:w-1/3 lg:w-5/12 flex justify-center md:justify-start">
             <div className="relative w-full">
-              <img src={anime.posterImage} alt={`${anime.title} Poster`} className="rounded-[20px] w-full aspect-[3/4] relative z-10" />
+              <Image src={anime.posterImage} alt={`${anime.title} Poster`} className="rounded-[20px] w-full aspect-[3/4] relative z-10" />
             </div>
           </div>
           
