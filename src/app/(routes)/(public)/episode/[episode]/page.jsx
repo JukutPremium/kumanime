@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import getEpisodeBySlug from "@/fetch/getEpisodeBySlug";
+import SelectedServer from "@/components/UI/SelectedServer";
 
 export default async function Episode(req) {
   const params = await req.params;
@@ -36,15 +37,7 @@ export default async function Episode(req) {
           Released on: {new Date(episode.releasedOn).toLocaleDateString()}
         </p>
 
-        {/* Video Servers */}
-        <h3 className="mt-4 text-lg font-semibold">Available Servers:</h3>
-        <div className="flex gap-2">
-          {episode.videoServer.map((server, index) => (
-            <button key={index} className="bg-blue-600 px-4 py-2 rounded-lg">
-              {server}
-            </button>
-          ))}
-        </div>
+        <SelectedServer episode={episode} />
 
         {/* Navigation Buttons */}
         <div className="flex justify-between mt-6">
