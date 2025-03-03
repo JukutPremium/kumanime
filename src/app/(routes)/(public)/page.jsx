@@ -1,5 +1,6 @@
 import getSeries from "@/fetch/getSeries";
 import Link from "next/link";
+import Image from "next/image"; // Import Image from next/image
 
 export default async function Home() {
   const { data } = await getSeries();
@@ -15,10 +16,12 @@ export default async function Home() {
         <div className="absolute inset-0 flex items-center justify-center bg-black/50">
           <h1 className="text-3xl font-bold">Welcome to Anime List</h1>
         </div>
-        <img
+        <Image
           src={data[0]?.banner || "/default-banner.jpg"}
           alt="Featured Anime"
-          className="w-full h-full object-cover"
+          layout="fill" // Use layout fill for responsive image
+          objectFit="cover" // Cover the entire area
+          className="rounded-lg"
         />
       </div>
 
@@ -38,10 +41,19 @@ export default async function Home() {
             <Link
               key={anime.id}
               href={`/series/${anime.slug}`}
-              className="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition"
+              className="block bg-gray-800 rounded-lg overflow-hidden hover:bg-gray-700 transition transform hover:scale-105"
             >
-              <h3 className="text-xl font-medium">{anime.title}</h3>
-              <p className="text-gray-400 text-sm">{anime.studio}</p>
+              <Image
+                src={anime.banner || "/default-banner.jpg"} // Use anime banner or default image
+                alt={anime.title}
+                width={300} // Set a width for the image
+                height={450} // Set a height for the image
+                className="w-full h-48 object-cover" // Ensure the image covers the area
+              />
+              <div className="p-4">
+                <h3 className="text-xl font-medium">{anime.title}</h3>
+                <p className="text-gray-400 text-sm">{anime.studio}</p>
+              </div>
             </Link>
           ))}
         </div>
@@ -65,10 +77,19 @@ export default async function Home() {
             <Link
               key={anime.id}
               href={`/series/${anime.slug}`}
-              className="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition"
+              className="block bg-gray-800 rounded-lg overflow-hidden hover:bg-gray-700 transition transform hover:scale-105"
             >
-              <h3 className="text-xl font-medium">{anime.title}</h3>
-              <p className="text-gray-400 text-sm">{anime.studio}</p>
+              <Image
+                src={anime.banner || "/default-banner.jpg"} // Use anime banner or default image
+                alt={anime.title}
+                width={300} // Set a width for the image
+                height={450} // Set a height for the image
+                className="w-full h-48 object-cover" // Ensure the image covers the area
+              />
+              <div className="p-4">
+                <h3 className="text-xl font-medium">{anime.title}</h3>
+                <p className="text-gray-400 text-sm">{anime.studio}</p>
+              </div>
             </Link>
           ))}
         </div>
