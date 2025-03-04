@@ -2,6 +2,10 @@ import getSeries from "@/fetch/getSeries";
 import Link from "next/link";
 import Image from "next/image"; // Import Image from next/image
 
+export const metadata = {
+  title: "Home",
+};
+
 export default async function Home() {
   const { data } = await getSeries();
 

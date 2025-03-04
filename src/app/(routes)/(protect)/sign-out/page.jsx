@@ -1,9 +1,15 @@
 import { signOut } from "@/auth";
 
+export const metadata = {
+  title: "Sign Out",
+};
+
 export default function SignOut() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white">
-      <h1 className="text-3xl font-bold mb-6">Are you sure you want to Sign Out?</h1>
+      <h1 className="text-3xl font-bold mb-6">
+        Are you sure you want to Sign Out?
+      </h1>
 
       <form
         action={async () => {

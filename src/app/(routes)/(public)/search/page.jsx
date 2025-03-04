@@ -1,6 +1,10 @@
 import Link from "next/link";
 import getSeriesSearch from "@/fetch/getSeriesSearch";
 
+export const metadata = {
+  title: "Search Anime",
+};
+
 export default async function Search(req) {
   const searchParams = await req.searchParams;
   const search = searchParams.query;
