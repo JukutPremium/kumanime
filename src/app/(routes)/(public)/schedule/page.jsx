@@ -1,6 +1,10 @@
 import Link from "next/link";
 import getSeriesSchedule from "@/fetch/getSeriesSchedule";
 
+export const metadata = {
+  title: "Anime Schedule",
+};
+
 export default async function Schedule() {
   const { data } = await getSeriesSchedule();
 

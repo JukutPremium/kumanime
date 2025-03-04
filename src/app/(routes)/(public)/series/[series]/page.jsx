@@ -4,6 +4,30 @@ import getSeriesBySlug from "@/fetch/getSeriesBySlug";
 import BookmarkButton from "@/components/UI/BookmarkButton";
 import Image from "next/image";
 
+export async function generateMetadata(req) {
+  const params = await req.params;
+  const seriesSlug = params.series;
+  const seriesData = await getSeriesBySlug(seriesSlug);
+
+  const {
+    title,
+    banner,
+    synopsis,
+  } = seriesData.data;
+
+  return {
+    title,
+    description: synopsis,
+    openGraph: {
+      images: [
+        {
+          url: banner, // Image for the open graph
+        },
+      ],
+    },
+  };
+}
+
 export default async function Series(req) {
   const params = await req.params;
   const seriesSlug = params.series;
@@ -15,7 +39,6 @@ export default async function Series(req) {
 
   const {
     id,
-    slug,
     title,
     banner,
     synopsis,

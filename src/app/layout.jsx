@@ -33,13 +33,13 @@ export const metadata = {
     siteName: "Kumanime",
     images: [
       {
-        url: `${baseUrl}/banner.jpg`, // Image for the open graph
+        url: `${baseUrl}/opengraph-image.png`, // Image for the open graph
         width: 800,
         height: 600,
         alt: "Kumanime Banner",
       },
       {
-        url: `${baseUrl}/banner.jpg`, // Larger resolution image
+        url: `${baseUrl}/opengraph-image.png`, // Larger resolution image
         width: 1800,
         height: 1600,
         alt: "Kumanime Banner",
@@ -51,7 +51,7 @@ export const metadata = {
     title: "Kumanime - Nonton Anime Sub Indo Terlengkap & Terbaru",
     description:
       "Kumanime adalah platform terbaik untuk nonton anime sub Indo terbaru dan terlengkap dengan kualitas HD. Temukan anime favoritmu dari berbagai genre seperti action, romance, fantasy, dan banyak lagi. Streaming gratis, kapan saja dan di mana saja!",
-    images: [`${baseUrl}/banner.jpg`], // Use the correct image URL for Twitter card
+    images: [`${baseUrl}/opengraph-image.png`], // Use the correct image URL for Twitter card
   },
   metadataBase: new URL(baseUrl), // Set the base URL here
 };
