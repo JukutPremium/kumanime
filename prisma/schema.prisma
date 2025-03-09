@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql" // Sesuaikan dengan database yang Anda gunakan
+  url      = env("DATABASE_URL")
+}
+
+model Series {
+  id           Int        @id @default(autoincrement())
+  slug         String     @unique
+  title        String
+  banner       String
+  synopsis     String
+  status       String
+  studio       String
+  season       String
+  type         String
+  preview      String?
+  scheduleDay  String?
+  genre        String[]
+
+  releasedOn   DateTime   @default(now())
+  updatedOn    DateTime   @updatedAt
+
+  censor       Boolean    @default(false)
+  deleted      Boolean    @default(false)
+
+  episodes     Episode[]
+}
+
+model Episode {
+  id          Int          @id @default(autoincrement())
+  slug        String       @unique
+  order       Int           
+  videoServer String[]
+
+  releasedOn  DateTime     @default(now())
+  updatedOn   DateTime     @updatedAt
+
+  deleted     Boolean      @default(false)
+
+  seriesId    Int
+  series      Series       @relation(fields: [seriesId], references: [id], onDelete: Cascade)
+}
