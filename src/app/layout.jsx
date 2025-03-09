@@ -58,6 +58,7 @@ export const metadata = {
 
 export const viewport = {
   themeColor: "#39FF14", // You can change this to a color that suits the Kumanime brand
+
 };
 
 export default function RootLayout({ children }) {
@@ -69,6 +70,7 @@ export default function RootLayout({ children }) {
         <Navbar />
         {children}
         <Footer />
+
       </body>
     </html>
   );
