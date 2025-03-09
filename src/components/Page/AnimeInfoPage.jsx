@@ -62,6 +62,7 @@ export default function AnimeInfoPage () {
             {anime.isCensored === false && (
               <div className="flex justify-center md:justify-start mb-8">
                 <span className="border border-green-500 text-white px-4 py-1 rounded-full text-sm w-80 text-center">UNCENSORED</span>
+
               </div>
             )}
             

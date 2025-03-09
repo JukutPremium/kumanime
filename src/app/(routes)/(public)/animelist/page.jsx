@@ -1,6 +1,10 @@
 import Link from "next/link";
 import getSeriesAnimeList from "@/fetch/getSeriesAnimeList";
 
+export const metadata = {
+  title: "Anime List",
+};
+
 export default async function AnimeList() {
   const { data } = await getSeriesAnimeList();
 

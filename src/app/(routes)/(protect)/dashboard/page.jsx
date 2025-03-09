@@ -5,6 +5,10 @@ import getSeriesSearch from "@/fetch/getSeriesSearch";
 import deleteSeries from "@/action/deleteSeries";
 import { redirect } from "next/navigation";
 
+export const metadata = {
+  title: "Dashboard",
+};
+
 export default async function Dashboard(req) {
   const session = await auth();
   if (!session?.user) return null;

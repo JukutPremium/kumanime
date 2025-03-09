@@ -1,6 +1,10 @@
 import Link from "next/link";
 import getSeriesCompleted from "@/fetch/getSeriesCompleted";
 
+export const metadata = {
+  title: "Completed Anime",
+};
+
 export default async function Ongoing(req) {
   const searchParams = await req.searchParams;
   const page = parseInt(searchParams.page) || 1;
