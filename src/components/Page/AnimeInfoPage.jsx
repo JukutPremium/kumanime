@@ -34,12 +34,12 @@ export default function AnimeInfoPage () {
         <div className="absolute top-0 left-0 bottom-0 right-0 w-screen h-[700px] bg-gradient-to-t from-black to-transparent"></div>
       </div>
       
-      <section className="pt-16 relative">
-        <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-8 mt-16 mb-16">
+      <section className="pt-72 relative">
+        <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-14 mt-16 mb-16">
           {/* Anime Poster */}
           <div className="w-full md:w-1/3 lg:w-5/12 flex justify-center md:justify-start">
             <div className="relative w-full">
-              <Image src={anime.posterImage} alt={`${anime.title} Poster`} className="rounded-[20px] w-full aspect-[3/4] relative z-10" />
+              <Image src={anime.posterImage} alt={`${anime.title} Poster`} width={440} height={440} className="rounded-[20px] w-full aspect-[3/4] relative z-10" />
             </div>
           </div>
           
@@ -48,20 +48,20 @@ export default function AnimeInfoPage () {
             <h1 className="text-4xl md:text-5xl font-bold mb-8 text-white">{anime.title}</h1>
             
             {/* Tags */}
-            <div className="flex flex-wrap justify-between md:justify-between gap-2 mb-4 w-80">
-              <span className="bg-Kgreen text-black px-4 py-1 rounded-full text-sm">{anime.status}</span>
-              <span className="bg-Kblue text-white px-4 py-1 rounded-full text-sm">{anime.type}</span>
-              <span className="bg-red-500 text-white px-4 py-1 rounded-full text-sm">EPISODE {anime.currentEpisode}</span>
+            <div className="flex flex-wrap justify-between md:justify-between mb-4 w-full ">
+              <span className="bg-Kgreen text-black px-[4.5rem] py-1 rounded-full text-sm font-semibold">{anime.status}</span>
+              <span className="bg-Kblue text-white px-[4.5rem] py-1 rounded-full text-sm font-semibold">{anime.type}</span>
+              <span className="bg-red-500 text-white px-[4.5rem] py-1 rounded-full text-sm font-semibold">EPISODE {anime.currentEpisode}</span>
             </div>
             
-            <div className="flex flex-wrap justify-between md:justify-between gap-2 mb-4 w-80">
-              <span className="border border-Kblue text-white px-10 py-1 rounded-full text-sm">{anime.studio}</span>
-              <span className="border border-Kblue text-white px-10 py-1 rounded-full text-sm">{anime.season}</span>
+            <div className="flex flex-wrap justify-between md:justify-between gap-2 mb-4 w-full">
+              <span className="border-4 border-Kblue text-white px-[7.7rem] font-semibold py-1 rounded-full text-sm">{anime.studio}</span>
+              <span className="border-4 border-Kblue text-white px-[7.7rem] font-semibold py-1 rounded-full text-sm">{anime.season}</span>
             </div>
             
             {anime.isCensored === false && (
-              <div className="flex justify-center md:justify-start mb-8">
-                <span className="border border-green-500 text-white px-4 py-1 rounded-full text-sm w-80 text-center">UNCENSORED</span>
+              <div className="flex justify-center md:justify-start mb-8 w-full">
+                <span className="border-4 border-Kgreen font-semibold text-white w-full py-1 rounded-full text-sm text-center">UNCENSORED</span>
               </div>
             )}
             
@@ -73,7 +73,7 @@ export default function AnimeInfoPage () {
             {/* Genre Tags */}
             <div className="flex flex-wrap justify-center md:justify-start gap-2">
               {anime.genres.map((genre, index) => (
-                <span key={index} className="bg-green-500 text-black px-4 py-1 rounded-full text-sm">{genre}</span>
+                <span key={index} className="bg-Kgreen text-black px-4 py-1 font-semibold rounded-full text-sm">{genre}</span>
               ))}
             </div>
           </div>
@@ -87,15 +87,15 @@ export default function AnimeInfoPage () {
     </section>
 
       <section className="max-w-6xl mx-auto px-6 my-12">
-      <h2 className="text-2xl font-bold mb-6 border-l-4 border-green-500 pl-3 text-white">List Episode {anime.title}</h2>
+      <h2 className="text-2xl font-semibold mb-6 border-l-4 border-Kgreen pl-3 text-white">List Episode {anime.title}</h2>
       
       <div className="space-y-4">
         {anime.episodes.map((episode) => (
           <div key={episode.number} className="flex items-center bg-gray-800 rounded-lg overflow-hidden hover:bg-gray-700 transition cursor-pointer">
-            <div className="bg-green-500 w-16 h-16 flex items-center justify-center text-2xl font-bold text-white">
+            <div className="bg-Kgreen w-16 h-16 flex items-center justify-center text-2xl font-semibold text-black">
               {episode.number}
             </div>
-            <div className="flex-1 px-4 py-3 flex justify-between items-center text-white">
+            <div className="flex-1 px-4 py-3 flex justify-between font-semibold items-center text-white">
               <span>{anime.title} Episode {episode.number}</span>
               <span className="text-gray-400">{episode.releasedAt}</span>
             </div>
