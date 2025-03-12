@@ -14,10 +14,6 @@ module.exports = {
         Kblue: "#512FFF",
         Kred: "#FF512F",
       },
-      fontFamily: {
-        kfont: ['Poppins', 'serif']
-       
-      },
     },
   },
   plugins: [],
