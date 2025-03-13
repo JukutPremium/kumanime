@@ -62,9 +62,9 @@ export default function BookmarkButton({ seriesData }) {
   return (
     <button
       onClick={toggleBookmark}
-      className={`flex items-center justify-center gap-2 mb-4 px-4 py-2 rounded-lg transition-colors ${
+      className={`flex items-center justify-center gap-2 mb-4 px-4 py-2 rounded-2xl w-full transition-colors ${
         isBookmarked
-          ? "bg-yellow-600 hover:bg-yellow-700 text-white"
+          ? "bg-green-600 hover:bg-green-700 text-white"
           : "bg-gray-700 hover:bg-gray-600 text-white"
       }`}
     >
