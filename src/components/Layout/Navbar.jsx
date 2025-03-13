@@ -1,4 +1,5 @@
 "use client";
+
 import Link from "next/link";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaBars } from "react-icons/fa";

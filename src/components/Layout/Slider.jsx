@@ -17,32 +17,32 @@ const HeroSlider = ({ sliderData }) => {
   }, [sliderData.length]);
 
   return (
-    <section className="relative h-[calc(100vh-80px)] w-full overflow-hidden">
+    <section className="relative h-[50dvh] w-full overflow-hidden">
       {sliderData.map((slide, index) => (
         <div
           key={index}
-          className={`absolute aspect-video inset-0 transition-opacity duration-700 ease-in-out ${
+          className={`absolute h-full w-full inset-0 transition-opacity duration-700 ease-in-out ${
             currentSlide === index ? "opacity-100" : "opacity-0"
           }`}
         >
           {/* Background Image */}
           <div
-            className="absolute inset-0 bg-cover bg-no-repeat brightness-50"
+            className="absolute h-full w-full bg-cover bg-no-repeat brightness-50"
             style={{
               backgroundImage: `url(${slide.backgroundImage})`,
-              backgroundPosition: "50% 75%", // Gambar lebih turun
+              backgroundPosition: "50% 50%", // Gambar lebih turun
               backgroundSize: "cover",
             }}
           />
 
           {/* Content */}
-          <div className="relative z-10 h-full w-full flex justify-center">
-            <div className="p-6 sm:p-10 md:p-16 w-full max-w-4xl">
-              <div className="border-l-4  border-[#2FFF51] py-2">
+          <div className="relative z-10 pl-20  h-full w-full flex items-end justify-center">
+            <div className="p-12 sm:p-10 md:p-16 w-full">
+              <div className="border-l-4 border-[#2FFF51] py-2">
                 <h1 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold pl-3 sm:pl-5">
                   {slide.title}
                 </h1>
-                <p className="text-white pl-4 sm:pl-6 text-sm sm:text-base lg:text-lg line-clamp-2">
+                <p className="text-white pl-4 sm:pl-6 text-sm sm:text-base lg:text-lg line-clamp-3 w-2/3">
                   {slide.description}
                 </p>
               </div>
@@ -80,7 +80,7 @@ const HeroSlider = ({ sliderData }) => {
       ))}
 
       {/* Navigation Dots */}
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+      <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
         {sliderData.map((_, index) => (
           <button
             key={index}
