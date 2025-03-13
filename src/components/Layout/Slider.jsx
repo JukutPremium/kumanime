@@ -17,7 +17,7 @@ const HeroSlider = ({ sliderData }) => {
   }, [sliderData.length]);
 
   return (
-    <section className="relative h-[50dvh] w-full overflow-hidden">
+    <section className="relative aspect-[16/6] w-full overflow-hidden">
       {sliderData.map((slide, index) => (
         <div
           key={index}
