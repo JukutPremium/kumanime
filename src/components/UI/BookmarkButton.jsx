@@ -40,11 +40,7 @@ export default function BookmarkButton({ seriesData }) {
     } else {
       // Add to bookmarks
       const newBookmark = {
-        id: seriesData.id,
-        slug: seriesData.slug,
-        title: seriesData.title,
-        banner: seriesData.banner,
-        status: seriesData.status,
+        ...seriesData,
         addedAt: new Date().toISOString(),
       };
 
