@@ -6,7 +6,7 @@ export const metadata = {
 };
 
 export default async function Home() {
-  const seriesData = await getSeries();
+  const seriesData = await getSeries(20);
 
   if (!seriesData || seriesData.error) {
     return notFound();
