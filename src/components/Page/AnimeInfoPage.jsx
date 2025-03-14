@@ -134,7 +134,7 @@ export default function AnimeInfoPage({ seriesData }) {
             title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
-            className="w-full h-64 rounded-lg"
+            className="w-full aspect-video rounded-lg"
           ></iframe>
         </div>
       </section>
@@ -147,7 +147,7 @@ export default function AnimeInfoPage({ seriesData }) {
         <div className="space-y-4">
           {seriesData.data.episodes.map((episode) => (
             <Link
-              href={`${process.env.NEXT_PUBLIC_BASE_URL}/episode/${episode.slug}`}
+              href={`/episode/${episode.slug}`}
               key={episode.id}
               className="flex items-center bg-gray-800 rounded-lg overflow-hidden hover:bg-gray-700 transition cursor-pointer"
             >

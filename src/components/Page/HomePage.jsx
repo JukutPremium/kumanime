@@ -40,7 +40,7 @@ const Section = ({
         >
           {series.map((seris, index) => (
             <Link
-              href={`${process.env.NEXT_PUBLIC_BASE_URL}/series/${seris.slug}`}
+              href={`/series/${seris.slug}`}
               key={index}
               className="flex-shrink-0 relative w-40 sm:w-48 md:w-56 lg:w-64 snap-center"
             >
@@ -49,7 +49,7 @@ const Section = ({
                 width={800}
                 height={800}
                 alt="image"
-                className="aspect-[4/6] rounded-2xl object-cover"
+                className="aspect-[3/4] rounded-2xl object-cover"
               />
               <div className="pt-4 pb-1">
                 {/* Status & Genre Wrapper */}
@@ -57,11 +57,10 @@ const Section = ({
                   <div className="flex gap-1 flex-wrap">
                     {/* Status */}
                     <span
-                      className={`inline-block px-2 py-1 rounded-2xl text-xs font-bold ${
-                        seris.status === "ongoing"
+                      className={`inline-block px-2 py-1 rounded-2xl text-xs font-bold ${seris.status === "ongoing"
                           ? "bg-orange-600"
                           : "bg-purple-500"
-                      }`}
+                        }`}
                     >
                       {seris.status.charAt(0).toUpperCase() +
                         seris.status.slice(1)}
@@ -133,7 +132,7 @@ const HomePage = ({ updatedSeries, completedSeries }) => {
     backgroundImage: item.banner,
     title: item.title,
     description: item.synopsis,
-    slug: `${process.env.NEXT_PUBLIC_BASE_URL}/series/${item.slug}`,
+    slug: `/series/${item.slug}`,
     primaryButtonText: "Watch Now",
   }));
 
