@@ -1,4 +1,4 @@
-import WatchlistPage from "@/components/Page/cm-WatchlistPage";
+import WatchlistPage from "@/components/Page/WatchlistPage";
 
 export const metadata = {
   title: "Bookmark or Watchlist Anime",
