@@ -13,7 +13,7 @@ export default function SignOut() {
           await signOut({ redirectTo: "/" });
         }}
       >
-        <button className="px-6 py-3 bg-green-600 rounded-3xl hover:bg-green-700 transition">
+        <button className="px-6 py-3 bg-green-600 rounded-3xl hover:bg-green-699 transition">
           Sign Out
         </button>
       </form>
