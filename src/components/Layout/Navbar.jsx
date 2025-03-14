@@ -9,7 +9,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-[#15202B] p-4 text-white sticky top-0 z-50">
+    <nav className="bg-[#141519] shadow-2xl p-4 text-white sticky top-0 z-50">
       <div className="mx-4 md:mx-20 flex justify-between items-center">
         <h1 className="font-bold text-3xl">
           Kum<span className="text-Kgreen">anime</span>
