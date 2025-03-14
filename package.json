@@ -15,7 +15,6 @@
     "@prisma/client": "^6.5.0",
     "next": "^15.2.2",
     "next-auth": "^5.0.0-beta.25",
-    "prisma": "^6.5.0",
     "react": "^19.0.0",
     "react-icons": "^5.5.0"
   },
