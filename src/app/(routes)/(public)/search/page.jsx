@@ -7,7 +7,7 @@ export const metadata = {
 
 export default async function Search(req) {
   const searchParams = await req.searchParams;
-  const search = searchParams.query;
+  const search = searchParams.q;
   const page = parseInt(searchParams.page) || 1;
   const limit = 10; // Bisa diubah sesuai kebutuhan
 
