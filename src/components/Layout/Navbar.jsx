@@ -15,8 +15,8 @@ const Navbar = () => {
       {isSearchOpen && (
         <Search isSearchOpen={isSearchOpen} setIsSearchOpen={setIsSearchOpen} />
       )}
-      <nav className="bg-Kblack p-4 text-white sticky top-0 z-50">
-        <div className="mx-4 md:mx-20 flex justify-between items-center">
+      <nav className="bg-Kblack p-4 text-white shadow-2xl shadow-Kblack sticky top-0 z-50">
+        <div className="mx-4 md:mx-20 flex justify-between shadow-2xl items-center">
           <Link href="/" className="font-bold text-3xl">
             Kum<span className="text-Kgreen">anime</span>
           </Link>

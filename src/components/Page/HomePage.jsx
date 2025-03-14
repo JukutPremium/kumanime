@@ -15,7 +15,7 @@ const Section = ({
   scrollRight,
 }) => (
   <section className="h-full w-full">
-    <div className="pt-12 sm:pt-24 flex flex-col gap-5 px-4 sm:px-24 bg-black">
+    <div className="pt-12 sm:pt-24 flex flex-col gap-5 px-4 sm:px-24 ">
       <div className="flex justify-between items-center px-2 sm:px-5 border-l-4 border-[#2FFF51]">
         <h2 className="text-white font-bold text-xl sm:text-2xl">{title}</h2>
         <Link
@@ -57,10 +57,11 @@ const Section = ({
                   <div className="flex gap-1 flex-wrap">
                     {/* Status */}
                     <span
-                      className={`inline-block px-2 py-1 rounded-2xl text-xs font-bold ${seris.status === "ongoing"
+                      className={`inline-block px-2 py-1 rounded-2xl text-xs font-bold ${
+                        seris.status === "ongoing"
                           ? "bg-orange-600"
                           : "bg-purple-500"
-                        }`}
+                      }`}
                     >
                       {seris.status.charAt(0).toUpperCase() +
                         seris.status.slice(1)}
