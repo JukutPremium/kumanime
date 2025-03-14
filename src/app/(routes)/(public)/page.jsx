@@ -1,4 +1,5 @@
 import getSeries from "@/fetch/getSeries";
+import { notFound } from "next/navigation";
 import HomePage from "@/components/Page/HomePage";
 
 export const metadata = {

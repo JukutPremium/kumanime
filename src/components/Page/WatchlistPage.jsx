@@ -100,7 +100,7 @@ export default function WatchlistPage() {
                     </span>
 
                     {/* Genre */}
-                    {seris?.genre.map((genre, idx) => {
+                    {seris?.genre?.map((genre, idx) => {
                       const pastelColors = [
                         "bg-red-200 text-red-800",
                         "bg-blue-200 text-blue-800",
