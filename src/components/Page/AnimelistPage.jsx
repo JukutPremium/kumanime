@@ -2,28 +2,20 @@ import Link from "next/link";
 import Image from "next/image";
 import formatDate from "@/utils/formatDate";
 
-export default function SchedulePage({ data }) {
+export default function AnimelistPage({ data }) {
   return (
     <>
       {/* Header Section */}
       <header className="mt-20 container mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="font-bold text-2xl sm:text-3xl lg:text-4xl border-l-4 border-Kgreen pl-4 text-Kgreen">
-          Schedule <span className="text-white">Series</span>
+          Anime<span className="text-white">list</span>
         </h1>
-        <div className="flex flex-wrap justify-center font-bold text-lg sm:text-xl lg:text-2xl gap-3 sm:gap-4 pt-12">
-          {[
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-            "Sunday",
-          ].map((day) => (
+        <div className="flex flex-wrap justify-center font-bold text-lg sm:text-xl lg:text-2xl gap-2  pt-12">
+          {data.map(({ name: day }) => (
             <Link
               href={`#${day}`}
               key={day}
-              className="py-2 px-4 bg-gray-800 rounded-lg transition duration-300 text-white hover:text-green-500 text-xl sm:text-2xl mt-3 font-semibold"
+              className="py-2 px-4 bg-gray-800 rounded-lg transition duration-300 text-white hover:text-green-500"
             >
               {day}
             </Link>
@@ -33,7 +25,7 @@ export default function SchedulePage({ data }) {
 
       {/* Main Section */}
       <main className="container px-4 sm:px-6 lg:px-8 mx-auto py-8">
-        {data.map(({ day, data: seriesData }) => (
+        {data.map(({ name: day, data: seriesData }) => (
           <div
             key={day}
             id={day}
@@ -61,11 +53,11 @@ export default function SchedulePage({ data }) {
                   >
                     {/* Image */}
                     <Image
-                      src={series.banner}
+                      src={series?.banner || "/banner.jpg"}
                       width={800}
                       height={800}
                       alt="image"
-                      className="aspect-[4/6] object-cover rounded-3xl"
+                      className="aspect-[4/6] text-center object-cover rounded-3xl"
                     />
 
                     {/* Content */}
