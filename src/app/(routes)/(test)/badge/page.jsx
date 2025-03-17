@@ -1,5 +1,4 @@
-import { Badge } from "@/components/ui/badge"; // Sesuaikan dengan path yang benar
-import { AlarmClock } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 export default function BadgePage() {
   return (
