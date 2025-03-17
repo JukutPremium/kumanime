@@ -1,0 +1,25 @@
+# TODO
+- ~button~
+- ~badge~
+- ~breadcrumb~
+- ~logo~
+- card series
+- cantainer card series
+- slider section
+- navbar section
+- footer section
+- search section
+- home page
+- search page
+- completed page
+- animelist nav series section
+- animelist page
+- watchlist page
+- ongoing page
+- schedule nav series section
+- schedule page
+- series page
+- header series page section
+- episode list series page section
+- episode page
+- and other
