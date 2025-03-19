@@ -1,4 +1,4 @@
-import { Badge } from "@/components/atoms/badge";
+import { Badge } from "@/components/atoms/Badge";
 
 export default function BadgePage() {
   return (

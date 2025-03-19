@@ -5,7 +5,7 @@ import {
   BreadcrumbList,
   BreadcrumbPage as BreadcrumbPageNow,
   BreadcrumbSeparator,
-} from "@/components/atoms/breadcrumb";
+} from "@/components/atoms/Breadcrumb";
 
 export default function BreadcrumbPage() {
   return (
