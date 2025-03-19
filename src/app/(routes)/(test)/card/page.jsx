@@ -4,10 +4,10 @@ export default function CardPage() {
   return (
     <div className="flex w-screen py-52 justify-center container mx-auto items-center">
       <CardSeries
-        title="SAtu"
-        slug="satu-slug"
+        title="Ore dake Level Up na Ken (Solo Leveling)"
+        slug="solo-leveling-slug"
         status="ongoing"
-        genre={["genre satu", "genre dua"]}
+        genre={["Action", "Adventure", "Fantasy"]}
         uploaded={new Date()}
         image="/banner.jpg"
       />

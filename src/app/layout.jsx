@@ -57,9 +57,9 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body
-        className={`${geistSans.variable} ${geistSans.className} text-white bg-[#141519] antialiased`}
+        className={`${geistSans.variable} ${geistSans.className} antialiased`}
       >
         <Navbar />
         {children}
