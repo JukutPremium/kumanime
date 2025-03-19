@@ -3,11 +3,11 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbPage,
+  BreadcrumbPage as BreadcrumbPageNow,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+} from "@/components/atoms/breadcrumb";
 
-export default function BreadcrumbTest() {
+export default function BreadcrumbPage() {
   return (
     <div className="flex w-screen py-52 justify-center container mx-auto items-center">
       <Breadcrumb>
@@ -21,7 +21,7 @@ export default function BreadcrumbTest() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+            <BreadcrumbPageNow>Breadcrumb</BreadcrumbPageNow>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>

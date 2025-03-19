@@ -1,5 +1,5 @@
 import { AlarmClock } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/atoms/Button";
 
 export default function ButtonPage() {
   return (
