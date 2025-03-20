@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Slot } from "@radix-ui/react-slot";
 
 import * as React from "react";
@@ -38,12 +37,11 @@ const buttonVariants = cva(
 
 const Button = React.forwardRef(
   ({ className, variant, size, asChild = false, href, ...props }, ref) => {
-    const Comp = asChild ? Slot : variant === "link" ? Link : "button"; // Ganti dengan Link jika variant "link"
+    const Comp = asChild ? Slot : "button"; // Ganti dengan Link jika variant "link"
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
-        {...(variant === "link" && href ? { href } : {})} // Hanya tambahkan href jika variant "link"
         {...props}
       />
     );

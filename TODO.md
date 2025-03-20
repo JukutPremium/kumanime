@@ -1,10 +1,11 @@
 # TODO
+
 - ~button~
 - ~badge~
 - ~breadcrumb~
 - ~logo~
-- card series
-- cantainer card series
+- ~card series~
+- ~cantainer card series~
 - slider section
 - navbar section
 - footer section

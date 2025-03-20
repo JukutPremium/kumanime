@@ -86,16 +86,16 @@ export default function ButtonPage() {
 
       {/* Link Variant */}
       <div className="flex flex-col items-center gap-4">
-        <Button variant="link" size="default" href="#s">
+        <Button variant="link" size="default">
           Link
         </Button>
-        <Button variant="link" size="sm" href="#s">
+        <Button variant="link" size="sm">
           Link - Small
         </Button>
-        <Button variant="link" size="lg" href="#s">
+        <Button variant="link" size="lg">
           Link - Large
         </Button>
-        <Button variant="link" size="icon" href="#s">
+        <Button variant="link" size="icon">
           <AlarmClock />
         </Button>
       </div>

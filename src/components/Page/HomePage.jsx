@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import HeroSlider from "@/components/Layout/Slider";
-import formatDate from "@/utils/formatDate";
+import { formatDate } from "@/utils/formatDate";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -57,11 +57,10 @@ const Section = ({
                   <div className="flex gap-1 flex-wrap">
                     {/* Status */}
                     <span
-                      className={`inline-block px-2 py-1 rounded-2xl text-xs font-bold ${
-                        seris.status === "ongoing"
+                      className={`inline-block px-2 py-1 rounded-2xl text-xs font-bold ${seris.status === "ongoing"
                           ? "bg-orange-600"
                           : "bg-purple-500"
-                      }`}
+                        }`}
                     >
                       {seris.status.charAt(0).toUpperCase() +
                         seris.status.slice(1)}

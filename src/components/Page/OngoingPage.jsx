@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import formatDate from "@/utils/formatDate";
+import { formatDate } from "@/utils/formatDate";
 
 export default function OngoingPage({ data, total, totalPages, page }) {
   return (
@@ -29,11 +29,10 @@ export default function OngoingPage({ data, total, totalPages, page }) {
               <div className="flex flex-wrap gap-2 items-center mb-2">
                 {/* Status */}
                 <span
-                  className={`px-3 py-1 rounded-3xl text-xs font-bold text-white ${
-                    seris.status === "ongoing"
+                  className={`px-3 py-1 rounded-3xl text-xs font-bold text-white ${seris.status === "ongoing"
                       ? "bg-orange-600"
                       : "bg-purple-500"
-                  }`}
+                    }`}
                 >
                   {seris.status.charAt(0).toUpperCase() + seris.status.slice(1)}
                 </span>
@@ -77,9 +76,8 @@ export default function OngoingPage({ data, total, totalPages, page }) {
         {/* Tombol Previous */}
         <Link
           href={`/ongoing?page=${page - 1}`}
-          className={`px-6 py-3 bg-Kgreen text-white rounded-3xl shadow-lg hover:bg-green-800 transition-all duration-300 ${
-            page <= 1 ? "pointer-events-none opacity-50" : ""
-          }`}
+          className={`px-6 py-3 bg-Kgreen text-white rounded-3xl shadow-lg hover:bg-green-800 transition-all duration-300 ${page <= 1 ? "pointer-events-none opacity-50" : ""
+            }`}
         >
           Previous
         </Link>
@@ -87,9 +85,8 @@ export default function OngoingPage({ data, total, totalPages, page }) {
         {/* Tombol Next */}
         <Link
           href={`/ongoing?page=${page + 1}`}
-          className={`px-6 py-3 bg-Kgreen text-white rounded-3xl shadow-lg hover:bg-green-800 transition-all duration-300 ${
-            page >= totalPages ? "pointer-events-none opacity-50" : ""
-          }`}
+          className={`px-6 py-3 bg-Kgreen text-white rounded-3xl shadow-lg hover:bg-green-800 transition-all duration-300 ${page >= totalPages ? "pointer-events-none opacity-50" : ""
+            }`}
         >
           Next
         </Link>
