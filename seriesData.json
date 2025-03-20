@@ -1,0 +1,36 @@
+[
+  {
+    "slug": "a-series-1-1710848200000",
+    "title": "A Series Title 1",
+    "banner": "https://picsum.photos/id/1/600/800",
+    "synopsis": "This is the synopsis for Series 1.",
+    "status": "ongoing",
+    "studio": "Studio 1",
+    "season": "Season 1",
+    "type": "TV",
+    "preview": "https://www.youtube.com/watch?v=h2RYiyI9Sdg",
+    "scheduleDay": "Monday",
+    "genre": ["Action", "Adventure", "Comedy"],
+    "censor": false,
+    "deleted": false,
+    "episodes": [
+      {
+        "slug": "series-1-episode-1-1710848200000",
+        "order": 1,
+        "videoServer": [
+          "https://short.icu/dydG34WTX",
+          "https://short.icu/44VYoz7uc"
+        ],
+        "deleted": false
+      },
+      {
+        "slug": "series-1-episode-2-1710848200000",
+        "order": 2,
+        "videoServer": [
+          "https://instinkserver.blogspot.com/?player=video&provider=gdrive&format=video%2Fmp4&link=1gAy-FdWzGD6sUx92Gcd5sp4m4xXVzgwc"
+        ],
+        "deleted": false
+      }
+    ]
+  }
+]
